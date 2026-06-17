@@ -1,61 +1,30 @@
 # Network Vulnerability Scanner
 
-Scanner de vulnérabilités réseau développé en Python permettant d'automatiser la découverte des hôtes actifs, le scan des ports TCP et l'identification des vulnérabilités potentielles.
+Outil d'audit et de reconnaissance réseau automatisé développé en Python, conçu pour cartographier un réseau local, identifier les services exposés et détecter les vulnérabilités connues.
 
 ## Fonctionnalités
 
-- Découverte des hôtes actifs sur le réseau
-- Scan des ports TCP
-- Multi-threading pour améliorer les performances
-- Banner Grabbing pour identifier les services
-- Détection des vulnérabilités à partir d'une base de règles JSON
-- Attribution d'un score de risque par machine
-- Génération automatique de rapports HTML
+- **Découverte d'hôtes :** Identification des machines actives sur un réseau local.
+- **Scan de ports TCP :** Analyse rapide et optimisée par **multi-threading** pour détecter les ports ouverts.
+- **Analyse applicative (Banner Grabbing) :** Extraction des signatures et bannières des services actifs (ex: versions de serveurs FTP, SSH, HTTP).
+- **Détection des vulnérabilités (CVE) :** Croisement automatisé des bannières récupérées avec une base de règles locale au format JSON.
+- **Scoring de risque :** Évaluation et attribution d'un niveau de criticité par machine auditée.
+- **Rapports dynamiques :** Génération automatique de rapports d'audit clairs et visuels en HTML.
 
-## Technologies utilisées
+## Architecture du Projet
 
-- Python
-- Socket Programming
-- Threading
-- JSON
-- HTML/CSS
-- Git / GitHub
-- Kali Linux
-- Metasploitable2
+Voici la structure modulaire du projet, alignée avec les bonnes pratiques de développement Python :
 
-## Environnement de test
-
-Le projet a été testé dans un environnement virtuel isolé :
-
-- Kali Linux
-- Metasploitable2
-
-## Structure du projet
-
-```
+```text
 scanner-cybersec/
-│
-├── scanner.py
-├── rules.json
-├── requirements.txt
-├── reports/
-├── screenshots/
-└── README.md
-```
-
-## Exemple de détection
-
-Le scanner permet :
-
-- d'identifier les ports ouverts ;
-- de récupérer les bannières des services ;
-- d'associer certaines signatures à des vulnérabilités connues ;
-- de générer un rapport HTML contenant les résultats de l'analyse.
-
-## Auteur
-
-Malak El Boukili
-
-Étudiante Ingénieure Informatique & Réseaux – EMSI
-
-Intérêt particulier pour la cybersécurité et les systèmes Linux.
+├── modules/
+│   ├── host_discovery.py    # Algorithmes de découverte des hôtes actifs
+│   ├── port_scanner.py      # Scanner de ports TCP multi-threadé
+│   ├── vuln_checker.py      # Moteur d'analyse et de correspondance CVE
+│   └── report_generator.py  # Générateur de rapports dynamiques en HTML
+├── rules/
+│   └── vulnerabilities.json # Base de signatures et règles de vulnérabilités
+├── .gitignore
+├── README.md
+├── requirements.txt         # Dépendances du projet
+└── scanner.py               # Point d'entrée principal de l'application
